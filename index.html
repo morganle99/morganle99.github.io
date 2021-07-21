@@ -14274,14 +14274,16 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[42]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">sklearn.linear_model</span>
+<span class="kn">import</span> <span class="nn">sklearn</span>
+
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">linear_model</span>
 </pre></div>
 
      </div>
@@ -14298,7 +14300,7 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[47]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">file</span> <span class="o">=</span> <span class="s1">&#39;games.csv&#39;</span>
@@ -14319,7 +14321,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[22]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[47]:</div>
 
 
 
@@ -14473,13 +14475,23 @@ a.anchor-link {
 <p>What just happened? We read the csv file from the saved location that was uploaded to the notebook as <code>games.csv</code>. The function <a href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">read_csv</a> is provided by pandas which does all the hard work for us. Now we have a dataframe, similar to a table, called <code>games</code> of which each row is a game entry.</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="The-Data:-EDIT-EDIT-EDIT-EDIT">The Data: EDIT EDIT EDIT EDIT<a class="anchor-link" href="#The-Data:-EDIT-EDIT-EDIT-EDIT">&#182;</a></h3><p>Now that we have the data stored in the pandaframe, we can alter it to best suit our needs. We do not need the <code>id</code>, <code>white_id</code>, or <code>black_id</code> as who played the game or how the game is stored in the database is unimportant to us. In addition, we do not need the <code>created_at</code> or <code>last_move_at</code> column as we are not concerned with the times of the games. The last column that we will drop is the <code>moves</code> column which shows every move of the entire game played. We will not be analyzing this either.</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[48]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">columns_to_drop</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;turns&#39;</span><span class="p">,</span> <span class="s1">&#39;increment_code&#39;</span><span class="p">,</span> <span class="s1">&#39;created_at&#39;</span><span class="p">,</span> <span class="s1">&#39;last_move_at&#39;</span><span class="p">,</span> <span class="s1">&#39;white_id&#39;</span><span class="p">,</span> <span class="s1">&#39;black_id&#39;</span><span class="p">,</span> <span class="s1">&#39;moves&#39;</span><span class="p">]</span>
+<span class="n">games</span> <span class="o">=</span> <span class="n">games</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span><span class="n">columns_to_drop</span><span class="p">)</span>
+<span class="n">games</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+
+<span class="c1">#create dataframe with opening_eco as rows</span>
 </pre></div>
 
      </div>
@@ -14487,6 +14499,258 @@ a.anchor-link {
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[48]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>rated</th>
+      <th>victory_status</th>
+      <th>winner</th>
+      <th>white_rating</th>
+      <th>black_rating</th>
+      <th>opening_eco</th>
+      <th>opening_name</th>
+      <th>opening_ply</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>False</td>
+      <td>outoftime</td>
+      <td>white</td>
+      <td>1500</td>
+      <td>1191</td>
+      <td>D10</td>
+      <td>Slav Defense: Exchange Variation</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>True</td>
+      <td>resign</td>
+      <td>black</td>
+      <td>1322</td>
+      <td>1261</td>
+      <td>B00</td>
+      <td>Nimzowitsch Defense: Kennedy Variation</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>True</td>
+      <td>mate</td>
+      <td>white</td>
+      <td>1496</td>
+      <td>1500</td>
+      <td>C20</td>
+      <td>King's Pawn Game: Leonardis Variation</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>True</td>
+      <td>mate</td>
+      <td>white</td>
+      <td>1439</td>
+      <td>1454</td>
+      <td>D02</td>
+      <td>Queen's Pawn Game: Zukertort Variation</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>True</td>
+      <td>mate</td>
+      <td>white</td>
+      <td>1523</td>
+      <td>1469</td>
+      <td>C41</td>
+      <td>Philidor Defense</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Now if we look at the columns, we have a lot of data for each game:</p>
+<ul>
+<li>rated (true if the game is rated, false if unrated) Note: Rated games directly affect elo</li>
+<li>victory_status (outoftime, resign, mate, or draw)</li>
+<li>winner (denotes which color won or if there was a draw)</li>
+<li>white_rating (white elo)</li>
+<li>black_rating (black elo)</li>
+<li>opening_eco (standardized code for the opening <a href="https://www.365chess.com/eco.php">listed here</a>)</li>
+<li>opening_name (name of the opening)</li>
+</ul>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Missing-Data:">Missing Data:<a class="anchor-link" href="#Missing-Data:">&#182;</a></h3><p>Our data is almost done to move on to the next step of our data science pipeline but first we have to account for missing data in our pandas dataframe. But what is missing data? Missing data is when we don't have data stored for that entry of column, row. In this case, because we used pandas <code>read_csv</code>, it filled in empty spaces with NaN already for us. The issue however is that pandas will simply ignore this and treat it as a 0, which is not beneficial and can be misleading. If you want to learn more about missing data and how pandas treats it, you can read more from <a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/missing_data.html">their guide</a>.</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[37]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># columns to check for missing values</span>
+<span class="n">check_nan</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;rated&#39;</span><span class="p">,</span> <span class="s1">&#39;victory_status&#39;</span><span class="p">,</span> <span class="s1">&#39;winner&#39;</span><span class="p">,</span> <span class="s1">&#39;white_rating&#39;</span><span class="p">,</span> <span class="s1">&#39;black_rating&#39;</span><span class="p">,</span> <span class="s1">&#39;opening_eco&#39;</span><span class="p">,</span> <span class="s1">&#39;opening_ply&#39;</span><span class="p">]</span>
+
+<span class="c1"># drop rows that have nan in specified columns</span>
+<span class="n">games</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="n">check_nan</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[27]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Minimum White Rating: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">games</span><span class="p">[</span><span class="s1">&#39;white_rating&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Minimum Black Rating: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">games</span><span class="p">[</span><span class="s1">&#39;black_rating&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Maximum White Rating: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">games</span><span class="p">[</span><span class="s1">&#39;white_rating&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Maximum Black Rating: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">games</span><span class="p">[</span><span class="s1">&#39;black_rating&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()))</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Minimum White Rating: 784
+Minimum Black Rating: 789
+Maximum White Rating: 2700
+Maximum Black Rating: 2723
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[49]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">games</span><span class="p">[</span><span class="s1">&#39;opening_ply&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>5
+4
+3
+10
+6
+1
+9
+2
+8
+7
+17
+11
+12
+13
+18
+19
+15
+16
+14
+28
+20
+22
+24
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Data-Wrangling:">Data Wrangling:<a class="anchor-link" href="#Data-Wrangling:">&#182;</a></h3><p>Now that our data is ready to be analyzed</p>
+
+</div>
 </div>
 </body>
 
